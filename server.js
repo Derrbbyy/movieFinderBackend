@@ -2,15 +2,14 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-
+dotenv.config();
 
 const app = express();
-const PORT = 3000;
-dotenv.config();
-app.use(cors());
+const PORT = process.env.PORT || 3000;
 const TMDB_BASE_URL = process.env.TMDB_BASE_URL;
 const API_KEY = process.env.API_KEY;
 
+app.use(cors());
 app.get('/api/popular',async (req,res)=>{
     try{
 
