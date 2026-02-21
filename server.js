@@ -27,7 +27,7 @@ app.get('/api/popular',async (req,res)=>{
 app.get('/api/search',async (req,res)=>{
     const {query,page} = req.query;
     try{ const response = await fetch(
-        `${TMDB_BASE_URL}/movie/search?api_key=${API_KEY}&query=${query}&page=${page}`)
+        `${TMDB_BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`)
      const data = await response.json();
     res.json(data);
     
