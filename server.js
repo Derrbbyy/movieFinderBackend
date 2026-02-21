@@ -14,20 +14,20 @@ app.get('/api/popular',async (req,res)=>{
     try{
 
         const response = await fetch (
-            `${TMDB_BASE_URL}/api/popular?api_key=${API_KEY}`
+            `${TMDB_BASE_URL}/movie/popular?api_key=${API_KEY}`
         )
         const data = await response.json()
           res.json(data)
 
     }catch(error){
-        res.status(500).json({error: 'Error fetching popular movies'})
+        res.status(500).json({error: 'Error fetching popular movies'});
     }
 });
 
 app.get('/api/search',async (req,res)=>{
     const {query,page} = req.query;
     try{ const response = await fetch(
-        `${TMDB_BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`)
+        `${TMDB_BASE_URL}/movie/search?api_key=${API_KEY}&query=${query}&page=${page}`)
      const data = await response.json();
     res.json(data);
     
@@ -48,7 +48,7 @@ app.get('/api/search',async (req,res)=>{
         } catch (error) {
           res.status(500).json({ error: "Error fetching movie details" });
         }
-    })
+    });
 
 app.listen(PORT,()=>{
     console.log(`Server is running on port ${PORT}`);
