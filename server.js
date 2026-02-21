@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { fileURLToPath } from 'url';
+
 
 
 const app = express();
@@ -15,13 +15,13 @@ app.get('/api/popular',async (req,res)=>{
     try{
 
         const response = await fetch (
-            `${TMDB_BASE_URL}/api/search/?api_key=${API_KEY}}`
+            `${TMDB_BASE_URL}/api/search/?api_key=${API_KEY}`
         )
         const data = await response.json()
-          response(data)
+          res.json(data)
 
     }catch(error){
-        res.statusCode(500).json({error: 'Error fetching popular movies'})
+        res.status(500).json({error: 'Error fetching popular movies'})
     }
 })
 
@@ -30,7 +30,7 @@ app.get('/api/search',async (req,res)=>{
     try{ const response = await fetch(
         `${TMDB_BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`)
      const data = await response.json();
-    response.json(data);
+    res.json(data);
     
     }catch(error){
          res.status(500).json({ error: "Error fetching movie details" })
