@@ -14,7 +14,7 @@ app.get('/api/popular',async (req,res)=>{
     try{
 
         const response = await fetch (
-            `${TMDB_BASE_URL}/api/search/?api_key=${API_KEY}`
+            `${TMDB_BASE_URL}/api/popular?api_key=${API_KEY}`
         )
         const data = await response.json()
           res.json(data)
@@ -22,7 +22,7 @@ app.get('/api/popular',async (req,res)=>{
     }catch(error){
         res.status(500).json({error: 'Error fetching popular movies'})
     }
-})
+});
 
 app.get('/api/search',async (req,res)=>{
     const {query,page} = req.query;
